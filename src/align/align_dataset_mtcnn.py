@@ -36,6 +36,7 @@ import align.detect_face
 import random
 from time import sleep
 
+
 def main(args):
     sleep(random.random())
     output_dir = os.path.expanduser(args.output_dir)
@@ -91,6 +92,7 @@ def main(args):
                             continue
                         if img.ndim == 2:
                             img = facenet.to_rgb(img)
+                        print(img.ndim)
                         img = img[:,:,0:3]
     
                         bounding_boxes, _ = align.detect_face.detect_face(img, minsize, pnet, rnet, onet, threshold, factor)

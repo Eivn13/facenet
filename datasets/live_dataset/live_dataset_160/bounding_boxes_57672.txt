@@ -1,0 +1,1 @@
+/var/www/html/Timak/facenet/datasets/live_dataset/live_dataset_160/Ondrej/some_image.png 117 318 1454 2031

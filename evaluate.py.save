@@ -1,0 +1,17 @@
+import sys
+import os
+
+#driectory of dataset for evaluation
+dir = "/var/www/html/Timak/facenet/datasets/nas_dataset/evaluate"
+test_folder = dir+"/Test"content_test_folder = test_folder+"/*"
+
+print("i will evaluate image:", sys.argv[1])
+print(dir)
+print(test_folder)
+print(content_test_folder)
+
+os.system("rm -rf "+ content_test_folder)
+if (os.system("-f "+sys.argv[1])):
+	print("subor existuje")
+else:
+	print("subor NEexistuje")
