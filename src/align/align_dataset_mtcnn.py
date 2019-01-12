@@ -35,6 +35,7 @@ import facenet
 import align.detect_face
 import random
 from time import sleep
+import subprocess
 
 
 def main(args):
@@ -92,7 +93,6 @@ def main(args):
                             continue
                         if img.ndim == 2:
                             img = facenet.to_rgb(img)
-                        print(img.ndim)
                         img = img[:,:,0:3]
     
                         bounding_boxes, _ = align.detect_face.detect_face(img, minsize, pnet, rnet, onet, threshold, factor)
@@ -138,6 +138,8 @@ def main(args):
                             
     print('Total number of images: %d' % nrof_images_total)
     print('Number of successfully aligned images: %d' % nrof_successfully_aligned)
+    os.chdir(output_dir)
+    subprocess.call('rm *.txt', shell=True)
             
 
 def parse_arguments(argv):

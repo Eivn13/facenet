@@ -9,7 +9,7 @@ import re
 dir = "/var/www/html/Timak/facenet/datasets/nas_dataset/evaluate"
 test_folder = dir+"/Test"
 content_test_folder = test_folder+"/*"
-DEBUG = False
+DEBUG = True
 treshold = 0.5
 image = sys.argv[1]
 
