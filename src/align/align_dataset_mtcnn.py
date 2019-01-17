@@ -140,7 +140,7 @@ def main(args):
     print('Number of successfully aligned images: %d' % nrof_successfully_aligned)
     os.chdir(output_dir)
     subprocess.call('rm *.txt', shell=True)
-            
+
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()

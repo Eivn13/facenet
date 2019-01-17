@@ -9,7 +9,7 @@ import re
 dir = "/var/www/html/Timak/facenet/datasets/nas_dataset/evaluate"
 test_folder = dir+"/Test"
 content_test_folder = test_folder+"/*"
-DEBUG = True
+DEBUG = False
 treshold = 0.5
 image = sys.argv[1]
 
@@ -40,7 +40,7 @@ if(DEBUG):
 	print(presnost)
 
 if(float(presnost) > treshold):
-	print(meno)
+	print("&"+meno)
 #		return(meno)
 else:
-	print("FUJ TO CO JE ZA KSICHT?")
+	print("&FUJ TO CO JE ZA KSICHT?")
