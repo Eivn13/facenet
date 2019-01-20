@@ -61,11 +61,11 @@ def main(args):
                  
             paths, labels = facenet.get_image_paths_and_labels(dataset)
             
-            print('Number of classes: %d' % len(dataset))
-            print('Number of images: %d' % len(paths))
-            
-            # Load the model
-            print('Loading feature extraction model')
+            # print('Number of classes: %d' % len(dataset))
+            # print('Number of images: %d' % len(paths))
+            #
+            # # Load the model
+            # print('Loading feature extraction model')
             facenet.load_model(args.model)
             
             # Get input and output tensors
@@ -75,7 +75,7 @@ def main(args):
             embedding_size = embeddings.get_shape()[1]
             
             # Run forward pass to calculate embeddings
-            print('Calculating features for images')
+            # print('Calculating features for images')
             nrof_images = len(paths)
             nrof_batches_per_epoch = int(math.ceil(1.0*nrof_images / args.batch_size))
             emb_array = np.zeros((nrof_images, embedding_size))
@@ -91,7 +91,7 @@ def main(args):
 
             if (args.mode=='TRAIN'):
                 # Train classifier
-                print('Training classifier')
+                # print('Training classifier')
                 model = SVC(kernel='linear', probability=True)
                 model.fit(emb_array, labels)
             
@@ -101,15 +101,15 @@ def main(args):
                 # Saving classifier model
                 with open(classifier_filename_exp, 'wb') as outfile:
                     pickle.dump((model, class_names), outfile)
-                print('Saved classifier model to file "%s"' % classifier_filename_exp)
+                # print('Saved classifier model to file "%s"' % classifier_filename_exp)
                 
             elif (args.mode=='CLASSIFY'):
                 # Classify images
-                print('Testing classifier')
+                # print('Testing classifier')
                 with open(classifier_filename_exp, 'rb') as infile:
                     (model, class_names) = pickle.load(infile)
 
-                print('Loaded classifier model from file "%s"' % classifier_filename_exp)
+                # print('Loaded classifier model from file "%s"' % classifier_filename_exp)
 
                 predictions = model.predict_proba(emb_array)
                 best_class_indices = np.argmax(predictions, axis=1)
@@ -119,7 +119,7 @@ def main(args):
                     print('%4d  %s: %.3f' % (i, class_names[best_class_indices[i]], best_class_probabilities[i]))
                     
                 accuracy = np.mean(np.equal(best_class_indices, labels))
-                print('Accuracy: %.3f' % accuracy)
+                # print('Accuracy: %.3f' % accuracy)
                 
             
 def split_dataset(dataset, min_nrof_images_per_class, nrof_train_images_per_class):
