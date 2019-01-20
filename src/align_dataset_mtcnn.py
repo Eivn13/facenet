@@ -80,12 +80,13 @@ def main(args):
                 nrof_images_total += 1
                 filename = os.path.splitext(os.path.split(image_path)[1])[0]
                 output_filename = os.path.join(output_class_dir, filename+'.png')
+                # print(output_filename)
                 if not os.path.exists(output_filename) or input_dir == '/var/www/html/Timak/facenet/datasets/unknown/raw/':
                     try:
                         img = misc.imread(image_path)
                     except (IOError, ValueError, IndexError) as e:
                         errorMessage = '{}: {}'.format(image_path, e)
-                        print(errorMessage)
+                        # print(errorMessage)
                     else:
                         if img.ndim<2:
                             # print('Unable to align "%s"' % image_path)
@@ -138,9 +139,8 @@ def main(args):
                             
     # print('Total number of images: %d' % nrof_images_total)
     # print('Number of successfully aligned images: %d' % nrof_successfully_aligned)
-    # print(output_dir)
-    # os.chdir(output_dir)
-    # subprocess.call('rm *.txt', shell=True)
+    os.chdir(output_dir)
+    subprocess.call('rm *.txt', shell=True)
 
 
 def parse_arguments(argv):
